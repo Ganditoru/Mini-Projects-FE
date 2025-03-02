@@ -1,0 +1,45 @@
+<div fxLayout="row" class="user-container">
+    <div *ngIf="(areUsersLoaded$ | async); else loading" fxLayout="column">
+        <div fxLayout="column">
+            <div fxFlexOffset="15px">
+                <span fxFlexOffset="30px">User List:</span>
+            </div>
+            
+            <ul>
+                <li *ngFor="let user of users$ | async">
+                    <input type="radio" name="selectedUser" [checked]="(selectedUsers$ | async)?.id === user.id"
+                        (change)="selectUser(user)" />
+                    {{ user.name }} - {{ user.email }}
+                </li>
+            </ul>
+        </div>
+
+
+        <div fxLayoutAlign="center" fxLayoutGap="2" *ngIf="visibleAction === UserActionsType.None">
+            <button (click)="showAddUserForm()">Show add User form</button>
+            <button (click)="showSelectedUser()">Show selected user</button>
+        </div>
+
+        <div *ngIf="visibleAction === UserActionsType.AddUser">
+            <app-add-user class="actions-container" (userAdded)="onUserAdded($event)"
+                (close)="closeActionWindow()"></app-add-user>
+        </div>
+
+        <div *ngIf="visibleAction === UserActionsType.ShowSelectedUser">
+            <app-show-user class="actions-container" (close)="closeActionWindow()"
+                [user]="selectedUsers$ | async"></app-show-user>
+        </div>
+    </div>
+    <div fxFlex></div>
+    <div fxLayout="column" fxLayoutAlign="start center">
+        <app-address></app-address>
+    </div>
+</div>
+
+
+
+<ng-template #loading>
+    <div fxFlex="100" fxLayoutAlign="center center">
+        <p>Loading<span class="dots"></span></p>
+    </div>
+</ng-template>

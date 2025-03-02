@@ -1,0 +1,30 @@
+<form [formGroup]="addressForm" (ngSubmit)="submitForm()" fxLayout="column" fxLayoutGap="4px" fxFlex="100">
+    <div fxLayout="row" fxLayoutGap="2" fxFlex="100">
+        <div fxLayout="row" fxFlex="49" fxLayoutGap="2">
+            <label>City:</label>
+            <div fxFlex></div>
+            <input type="text" formControlName="city" fxFxlex="50"
+                [ngClass]="{'error-border': addressForm.controls.city.invalid && addressForm.controls.city.touched}" />
+        </div>
+
+        <div fxLayout="row" fxFlex="49" fxLayoutGap="2">
+            <label>Street:</label>
+            <div fxFlex></div>
+            <input type="text" formControlName="street" fxFxlex="50"
+                [ngClass]="{'error-border': addressForm.controls.street.invalid && addressForm.controls.street.touched}" />
+        </div>
+    </div>
+
+    <div fxLayout="row" fxFlex="100" >
+        <div fxLayout="row" fxFlex="49" fxLayoutGap="2">
+            <label>Zip code:</label>
+            <div fxFlex></div>
+            <input type="email" formControlName="zipcode" fxFxlex="50"
+                [ngClass]="{'error-border': addressForm.controls.zipcode.invalid && addressForm.controls.zipcode.touched}" />
+        </div>
+    </div>
+    <div fxLayoutAlign="center" fxLayoutGap="8px">
+        <button type="submit">Submit</button>
+        <button (click)="clearUser()">Cancel</button>
+    </div>
+</form>

@@ -1,0 +1,32 @@
+<div *ngIf="(addresses$ | async)!.length > 0">
+    <div fxLayout="column" fxLayoutAlign="center end">
+        <div fxLayout="column">
+            <div fxFlexOffset="15px">
+                <span fxFlexOffset="30px">Address List:</span>
+            </div>
+
+            <ul>
+                <li *ngFor="let address of addresses$ | async">
+                    <input type="radio" name="selectedUser" [checked]="(selectedAddress$ | async)?.street === address.street"
+                    (change)="selectAddress(address)" />
+                    {{ address.city }} - {{ address.street }} - {{ address.zipcode }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div fxLayoutAlign="center" fxLayoutGap="2" *ngIf="visibleAction === AddressActionsType.None">
+        <button (click)="showAddAddressForm()">Show add address form</button>
+        <button (click)="showSelectedAddress()">Show selected address</button>
+    </div>
+
+    <div *ngIf="visibleAction === AddressActionsType.AddAddress">
+        <app-add-address class="actions-container" (userAdded)="onAddressAdd($event)"
+            (close)="closeActionWindow()"></app-add-address>
+    </div>
+
+    <div *ngIf="visibleAction === AddressActionsType.ShowSelectedAddress">
+        <app-show-address class="actions-container" (close)="closeActionWindow()"
+            [address]="selectedAddress$ | async"></app-show-address>
+    </div>
+</div>

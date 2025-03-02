@@ -1,33 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../global-store/app.reducer';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { User } from './models/user.model';
-import { UserService } from './service/user.service';
 import { FlexLayoutModule } from '@ngbracket/ngx-layout';
-import { selectIsLoading, selectSelectedUser, selectUserList } from './store/user.selector';
-import { addUser, loadUsers, setUser } from './store/user.actions';
+import { selectIsLoaded, selectSelectedUser, selectUserList } from './store/user/user.selector';
+import { addUser, loadUsers, setUser } from './store/user/user.actions';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { AddUserRequest } from './models/add-user-request.model';
-import { ActionsType } from './models/action-types.enum';
 import { ShowUserComponent } from './components/show-user/show-user.component';
+import { AppState } from '../global-store/app.reducer';
+import { AddressComponent } from './address/address.component';
+import { UserActionsType } from './models/user-action-types.enum';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CommonModule, FlexLayoutModule, AddUserComponent, ShowUserComponent],
-  providers: [UserService],
+  imports: [CommonModule, FlexLayoutModule, AddUserComponent, ShowUserComponent, AddressComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
 export class UserComponent implements OnInit {
   public users$: Observable<User[]> = this.store.select(selectUserList);
   public selectedUsers$: Observable<User | null> = this.store.select(selectSelectedUser);
-  public isLoadingUsers$: Observable<boolean> = this.store.select(selectIsLoading);
+  public areUsersLoaded$: Observable<boolean> = this.store.select(selectIsLoaded);
 
-  public visibleAction: ActionsType = ActionsType.None;
-  public ActionsType = ActionsType;
+  public visibleAction: UserActionsType = UserActionsType.None;
+  public UserActionsType = UserActionsType;
 
   constructor(private readonly store: Store<AppState>) { }
 
@@ -36,16 +35,16 @@ export class UserComponent implements OnInit {
   }
 
   public showAddUserForm() {
-    this.visibleAction = ActionsType.AddUser;
+    this.visibleAction = UserActionsType.AddUser;
   }
 
   public showSelectedUser() {
-    this.visibleAction = ActionsType.ShowSelectedUser;
+    this.visibleAction = UserActionsType.ShowSelectedUser;
   }
 
   public onUserAdded(user: AddUserRequest) {
     this.store.dispatch(addUser({ user }));
-    this.visibleAction = ActionsType.None;
+    this.visibleAction = UserActionsType.None;
   }
 
   public selectUser(user: User) {
@@ -53,6 +52,6 @@ export class UserComponent implements OnInit {
   }
 
   public closeActionWindow() {
-    this.visibleAction = ActionsType.None;
+    this.visibleAction = UserActionsType.None;
   }
 }

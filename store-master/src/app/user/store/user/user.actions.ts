@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { User } from '../../../components/user/models/user.model';
-import { AddUserRequest } from '../models/add-user-request.model';
+import { AddUserRequest } from '../../models/add-user-request.model';
+import { User } from '../../models/user.model';
 
 export const setUser = createAction('[User] Set User', props<{ user: User }>());
 

@@ -1,0 +1,15 @@
+<div fxLayoutAlign="center">
+    <button (click)="closeComponent()" class="close-btn">✖</button>
+    <div *ngIf="address; else noAddress">
+        <p><strong>Street:</strong> {{ address.street }}</p>
+        <p><strong>Suite:</strong> {{ address.suite }}</p>
+        <p><strong>City:</strong> {{ address.city }}</p>
+        <p><strong>Zipcode:</strong> {{ address.zipcode }}</p>
+        <p *ngIf="address.geo"><strong>Address:</strong> {{ address.geo.lat }}, {{ address.geo.lng }}</p>
+    </div>
+    
+</div>
+
+<ng-template #noAddress>
+    <p>No address selected.</p>
+</ng-template>

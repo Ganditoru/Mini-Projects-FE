@@ -1,3 +1,5 @@
+import { Address } from "../address/models/address.model";
+
 export interface User {
     id: number;
     name: string;
@@ -13,17 +15,4 @@ export interface Company {
     name: string;
     catchPhrase: string;
     bs: string;
-}
-
-export interface Address {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: GeoLocation;
-}
-
-export interface GeoLocation {
-    lat: string;
-    lng: string;
 }

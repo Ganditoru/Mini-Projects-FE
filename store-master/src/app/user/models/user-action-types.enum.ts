@@ -1,4 +1,4 @@
-export enum ActionsType {
+export enum UserActionsType {
     None,
     AddUser,
     ShowSelectedUser

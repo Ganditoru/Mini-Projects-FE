@@ -1,19 +1,19 @@
 import { createReducer, on } from '@ngrx/store';
 import { addUserSuccess, loadUsers, loadUsersFailure, loadUsersSuccess, setUser } from './user.actions';
-import { User } from '../../../components/user/models/user.model';
+import { User } from '../../models/user.model';
 
 export interface UserState {
   selectedUser: User | null;
   userList: User[];
   error: string | null;
-  isLoading: boolean;
+  isLoaded: boolean;
 }
 
 const initialState: UserState = {
   selectedUser: null,
   userList: [],
   error: null,
-  isLoading: false
+  isLoaded: false
 };
 
 export const userReducer = createReducer(
@@ -22,20 +22,20 @@ export const userReducer = createReducer(
 
   on(loadUsers, (state) => ({
     ...state,
-    isLoading: true,
+    isLoaded: false,
     error: null
   })),
 
   on(loadUsersSuccess, (state, { users }) => ({
     ...state,
     userList: users,
-    isLoading: false,
+    isLoaded: true,
     error: null
   })),
 
   on(loadUsersFailure, (state, { error }) => ({
     ...state,
-    isLoading: false,
+    isLoaded: true,
     error
   })),
 
