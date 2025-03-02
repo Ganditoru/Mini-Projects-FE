@@ -1,0 +1,31 @@
+:host {
+
+  .actions-container {
+    min-width: 500px;
+    max-width: 500px;
+  }
+
+
+  .dots::after {
+    content: "";
+    animation: dots 1.5s infinite step-start;
+  }
+
+  @keyframes dots {
+    0% {
+      content: "";
+    }
+
+    33% {
+      content: ".";
+    }
+
+    66% {
+      content: "..";
+    }
+
+    100% {
+      content: "...";
+    }
+  }
+}
