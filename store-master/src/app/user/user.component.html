@@ -1,18 +1,7 @@
 <div fxLayout="row" class="user-container">
     <div *ngIf="(areUsersLoaded$ | async); else loading" fxLayout="column">
-        <div fxLayout="column">
-            <div fxFlexOffset="15px">
-                <span fxFlexOffset="30px">User List:</span>
-            </div>
-            
-            <ul>
-                <li *ngFor="let user of users$ | async">
-                    <input type="radio" name="selectedUser" [checked]="(selectedUsers$ | async)?.id === user.id"
-                        (change)="selectUser(user)" />
-                    {{ user.name }} - {{ user.email }}
-                </li>
-            </ul>
-        </div>
+        <app-show-user-list [userList]="(users$ | async)!" [selectedUser]="(selectedUsers$ | async)!"
+            (selectUser)="selectUser($event)"></app-show-user-list>
 
 
         <div fxLayoutAlign="center" fxLayoutGap="2" *ngIf="visibleAction === UserActionsType.None">

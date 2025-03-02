@@ -12,11 +12,12 @@ import { ShowUserComponent } from './components/show-user/show-user.component';
 import { AppState } from '../global-store/app.reducer';
 import { AddressComponent } from './address/address.component';
 import { UserActionsType } from './models/user-action-types.enum';
+import { ShowUserListComponent } from './components/show-user-list/show-user-list.component';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CommonModule, FlexLayoutModule, AddUserComponent, ShowUserComponent, AddressComponent],
+  imports: [CommonModule, FlexLayoutModule, AddUserComponent, ShowUserComponent, AddressComponent, ShowUserListComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })

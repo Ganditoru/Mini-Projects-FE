@@ -10,11 +10,12 @@ import { AddressActionsType } from './models/user-action-types.enum';
 import { addAddress, loadAddresses, setAddress } from './store/address.actions';
 import { AddAddressRequest } from './models/add-address-request.model';
 import { Address } from './models/address.model';
+import { ShowAddressListComponent } from './components/show-address-list/show-address-list.component';
 
 @Component({
   selector: 'app-address',
   standalone: true,
-  imports: [CommonModule, FlexLayoutModule, AddAddressComponent, ShowAddressComponent],
+  imports: [CommonModule, FlexLayoutModule, AddAddressComponent, ShowAddressComponent, ShowAddressListComponent],
   templateUrl: './address.component.html',
   styleUrl: './address.component.scss'
 })

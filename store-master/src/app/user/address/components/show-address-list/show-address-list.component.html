@@ -1,0 +1,15 @@
+<div fxLayout="column" fxLayoutAlign="center end">
+    <div fxLayout="column">
+        <div fxFlexOffset="15px">
+            <span fxFlexOffset="30px">Address List:</span>
+        </div>
+
+        <ul>
+            <li *ngFor="let address of addressList">
+                <input type="radio" name="selectedUser" [checked]="selectedAddress?.street === address.street"
+                (change)="onAddressSelect(address)" />
+                {{ address.city }} - {{ address.street }} - {{ address.zipcode }}
+            </li>
+        </ul>
+    </div>
+</div>

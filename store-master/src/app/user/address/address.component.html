@@ -1,19 +1,6 @@
 <div *ngIf="(addresses$ | async)!.length > 0">
-    <div fxLayout="column" fxLayoutAlign="center end">
-        <div fxLayout="column">
-            <div fxFlexOffset="15px">
-                <span fxFlexOffset="30px">Address List:</span>
-            </div>
-
-            <ul>
-                <li *ngFor="let address of addresses$ | async">
-                    <input type="radio" name="selectedUser" [checked]="(selectedAddress$ | async)?.street === address.street"
-                    (change)="selectAddress(address)" />
-                    {{ address.city }} - {{ address.street }} - {{ address.zipcode }}
-                </li>
-            </ul>
-        </div>
-    </div>
+    <app-show-address-list [addressList]="(addresses$ | async)!" [selectedAddress]="(selectedAddress$ | async)!"
+        (selectAddress)="selectAddress($event)"></app-show-address-list>
 
     <div fxLayoutAlign="center" fxLayoutGap="2" *ngIf="visibleAction === AddressActionsType.None">
         <button (click)="showAddAddressForm()">Show add address form</button>

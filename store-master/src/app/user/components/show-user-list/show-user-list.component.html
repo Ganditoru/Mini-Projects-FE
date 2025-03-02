@@ -1,0 +1,12 @@
+<div fxLayout="column">
+    <div fxFlexOffset="15px">
+        <span fxFlexOffset="30px">User List:</span>
+    </div>
+    <ul>
+        <li *ngFor="let user of userList">
+            <input type="radio" name="selectedUser" [checked]="selectedUser?.id === user.id"
+                (change)="onUserSelect(user)" />
+            {{ user.name }} - {{ user.email }}
+        </li>
+    </ul>
+</div>
