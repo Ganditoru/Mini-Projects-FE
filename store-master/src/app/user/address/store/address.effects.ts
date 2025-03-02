@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { addAddress, addAddressSuccessful, loadAddresses, loadAddressesFailed, loadAddressesSuccessful } from "./address.actions";
 import { AddressService } from "../service/address.service";
-import { catchError, filter, map, mergeMap, of, switchMap, take, withLatestFrom } from "rxjs";
+import { catchError, filter, map, mergeMap, of, switchMap, withLatestFrom } from "rxjs";
 import { Address } from "../models/address.model";
 import { Store, select } from '@ngrx/store';
 import { selectAllAddresses, selectIsUserListLoaded } from "./address.selector";

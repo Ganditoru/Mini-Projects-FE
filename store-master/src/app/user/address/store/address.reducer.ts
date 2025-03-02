@@ -19,7 +19,6 @@ export const addressReducer = createReducer(
 
   on(loadAddressesSuccessful, (state, { addressList }) => ({ ...state, addressList })),
 
-
   on(addAddressSuccessful, (state, { address }) => ({ ...state, addressList: [...state.addressList, address] }))
 
 );
